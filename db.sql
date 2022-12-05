@@ -12,3 +12,4 @@ CREATE TABLE usuario(
     password varchar(255)
 );
 
+INSERT INTO usuario(username,password) VALUES('josesito','$2y$10$bsUBsEC4yMkjAJqW0olEL.eJiljefJ2HOXQVWN.Bs1oYVJLAK.aLG');

@@ -2,13 +2,19 @@
     require "../utils/autoload.php";
 
     class SesionControlador {
+        public static function Autenticar($context){
+            $u = new UsuarioModelo();
+            $u -> Nombre = $context['post']['usuario'];
+            $u -> Password = $context['post']['password'];
+            if($u -> Autenticar($u -> Nombre, $u -> Password))
+                return true; 
+            return false;
+
+        }
         public static function IniciarSesion($context){
 
             try {
-                $u = new UsuarioModelo();
-                $u -> Nombre = $context['post']['usuario'];
-                $u -> Password = $context['post']['password'];
-                if($u -> Autenticar($u -> Nombre, $u -> Password)){
+                if(self::Autenticar($context)){
                     SessionCreate("autenticado",true);
                     SessionCreate("nombreUsuario", $u -> Nombre);
                     header("Location: /");
